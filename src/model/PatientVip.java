@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class PatientVip extends Patient {
     private String typeVip;
-    private Date dateVip;
+    private String dateVip;
 
-    public PatientVip(int id, int medicalCode, String name, String dateIn, String dateOut, String reason, String typeVip,Date dateVip) {
+    public PatientVip(int id, int medicalCode, String name, String dateIn, String dateOut, String reason, String typeVip,String dateVip) {
         super(id, medicalCode, name, dateIn, dateOut, reason);
         this.typeVip = typeVip;
         this.dateVip = dateVip;
@@ -20,11 +20,11 @@ public class PatientVip extends Patient {
         this.typeVip = typeVip;
     }
 
-    public Date getDateVip() {
+    public String getDateVip() {
         return dateVip;
     }
 
-    public void setDateVip(Date dateVip) {
+    public void setDateVip(String dateVip) {
         this.dateVip = dateVip;
     }
 

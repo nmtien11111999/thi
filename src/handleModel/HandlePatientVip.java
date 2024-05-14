@@ -21,7 +21,7 @@ public class HandlePatientVip {
 
     public void addPatient(){
         readPatientNormal();
-        patientsVip.add(handlePatient());
+//        patientsVip.add(handlePatient());
         System.out.println(" Thêm thành công: ");
         writePatientNormal();
     }
@@ -54,7 +54,7 @@ public class HandlePatientVip {
         }
     }
 
-    public PatientNormal handlePatient(){
+    public PatientVip handlePatient(){
         try {
             System.out.print(" Nhập mã bệnh án ");
             int medicalCode = inputInt.nextInt();
@@ -79,7 +79,7 @@ public class HandlePatientVip {
 
     public void displayPatientNormal(){
         readPatientNormal();
-        for (PatientNormal patient : patientsVip){
+        for (PatientVip patient : patientsVip){
             System.out.println(" Hồ sơ bệnh án:"+patient.getId()+" -Mã bệnh án: " + patient.getMedicalCode() + " -Tên bệnh nhân: "+patient.getName()+" -Ngày nhập viện: "+patient.getDateIn()+ " - Ngày ra viện: "+patient.getDateOut()+" -Lý do nhập viện: "+patient.getReason() );
         }
     }
@@ -94,8 +94,9 @@ public class HandlePatientVip {
                 String dateIn = tokens[3];
                 String dateOut = tokens[4];
                 String reason = tokens[5];
-                double price = Double.parseDouble(tokens[6]);
-                patientsVip.add(new PatientNormal(id,medicalCode,name,dateIn,dateOut,reason,price));
+                String typeVip = tokens[6];
+                String date = tokens[7];
+                patientsVip.add(new PatientVip(id,medicalCode,name,dateIn,dateOut,reason,typeVip,date));
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -104,9 +105,9 @@ public class HandlePatientVip {
 
     public void writePatientNormal(){
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("medicalVip_records.csv"))) {
-            for (PatientNormal patient : patientsVip){
+            for (PatientVip patient : patientsVip){
                 bufferedWriter.write(patient.getId()+","+patient.getMedicalCode()+","+patient.getName()+","+patient.getDateIn()+","
-                        +patient.getDateOut()+","+patient.getReason()+","+patient.getPrice());
+                        +patient.getDateOut()+","+patient.getReason()+","+patient.getTypeVip()+","+patient.getDateVip());
                 bufferedWriter.newLine();
             }
         } catch (Exception e){
